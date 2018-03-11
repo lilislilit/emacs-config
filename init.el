@@ -56,12 +56,9 @@ various buffer management routines")
 
 ;;-------------------------------------------------------------------------------
 
-(add-to-list 'auto-mode-alist '(".*\\.bb$" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("Makefile\\..*" . makefile-mode))
 (add-to-list 'auto-mode-alist '(".*\\.mak$" . makefile-mode))
 (add-to-list 'auto-mode-alist '(".*\\.h\\.in$" . c-mode))
-(add-to-list 'auto-mode-alist '(".*\\.bat$" . dos-mode))
-(add-to-list 'auto-mode-alist '("svn-.*\\.tmp$" . text-mode))
 
 ;;-------------------------------------------------------------------------------
 
@@ -91,26 +88,10 @@ various buffer management routines")
 ;;-------------------------------------------------------------------------------
 ;; diff
 
-(setq ediff-window-setup-function 'ediff-setup-windows-plain
-      ediff-split-window-function #'(lambda (&optional arg)
-                                      (if (> (frame-width) 140)
-                                          (split-window-horizontally arg)
-                                        (split-window-vertically arg))))
-
 (add-hook 'diff-mode-hook
           '(lambda ()
              ;; diff-goto-source
              (define-key diff-mode-map (kbd "C-m") 'diff-goto-source)))
-
-;;-------------------------------------------------------------------------------
-
-(fset 'perl-mode 'cperl-mode)
-
-(add-hook 'cperl-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-h f") 'cperl-perldoc)
-            (setq indent-tabs-mode nil)
-            (cperl-set-style "C++")))
 
 ;;-------------------------------------------------------------------------------
 
@@ -169,15 +150,10 @@ various buffer management routines")
 (load-conf 'ggtags "ggtags")
 (load-conf 'helm "helm")
 (load-conf 'helm-gtags "helm-gtags")
-(load-conf 'auto-complete "ac")
 (load-conf 'company
            '(progn
               (global-set-key (kbd "M-t") #'company-complete)))
-(load-conf 'ac-ispell
-           '(progn
-              (ac-ispell-setup)
-              (add-hook 'text-mode-hook 'ac-ispell-ac-setup))
-           t)
+
 (load-conf 'aggressive-indent "ai" t)
 (load-conf 'flyspell "fs" t)
 
@@ -192,9 +168,7 @@ various buffer management routines")
                           (add-to-list 'ido-ignore-buffers entry))
                       ignored-buffer-list)))
 
-(load-conf 'elscreen "es")
 (load-conf 'erc "erc")
-(load-conf 'jabber "jabber")
 (load-conf 'org "org")
 
 ;;-------------------------------------------------------------------------------
