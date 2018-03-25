@@ -150,16 +150,16 @@ various buffer management routines")
               :after-load ((load-config "ai"))
               :required t)
 
-(load-package 'ggtags :after-load ((load-config "ggtags")))
-(load-package 'helm :after-load ((load-config "helm")))
-(load-package 'helm-gtags :after-load ((load-config "helm-gtags")))
+(load-package 'ggtags :config "ggtags")
+(load-package 'helm :config "helm")
+(load-package 'helm-gtags :config "helm-gtags")
 (load-package 'company :after-load ((global-set-key (kbd "M-t") #'company-complete)))
 
 (load-package 'flyspell :after-load ((load-config "fs")))
 
-(load-package 'dired :after-load ((load-config "dired")))
-(load-package 'cc-mode :after-load ((load-config "cc")))
-(load-package 'vc :after-load ((load-config "vc")))
+(load-package 'dired :config "dired")
+(load-package 'cc-mode :config "cc")
+(load-package 'vc :config "vc")
 (load-package 'ido
               :options ((ido-enable-flex-matching . t)
                         (ido-create-new-buffer . 'always))
@@ -167,8 +167,8 @@ various buffer management routines")
                                        (add-to-list 'ido-ignore-buffers entry))
                                    ignored-buffer-list)))
 
-(load-package 'erc :after-load ((load-config "erc")))
-(load-package 'org :after-load ((load-config "org")))
+(load-package 'erc :config "erc")
+(load-package 'org :config "org")
 
 ;;-------------------------------------------------------------------------------
 ;; to make a cursor navigation a little bit easy
