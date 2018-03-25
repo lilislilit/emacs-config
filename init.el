@@ -130,24 +130,31 @@ various buffer management routines")
 (require 'my-utils)
 
 (load-package 'iresize
-              :after-load ((global-set-key (kbd "C-c r") #'iresize-mode)))
+              :after-load ((global-set-key (kbd "C-c r") #'iresize-mode))
+              :required t)
 
 (load-package 'window-numbering
-              :after-load ((window-numbering-mode 1)))
+              :after-load ((window-numbering-mode 1))
+              :required t)
 
 (load-package 'expand-region
-              :after-load ((global-set-key (kbd "M-@") 'er/expand-region)))
+              :after-load ((global-set-key (kbd "M-@") 'er/expand-region))
+              :required t)
 
 (load-package 'which-key
               :options ((which-key-idle-delay . 2.0))
-              :after-load ((which-key-mode 1)))
+              :after-load ((which-key-mode 1))
+              :required t)
+
+(load-package 'aggressive-indent
+              :after-load ((load-config "ai"))
+              :required t)
 
 (load-package 'ggtags :after-load ((load-config "ggtags")))
 (load-package 'helm :after-load ((load-config "helm")))
 (load-package 'helm-gtags :after-load ((load-config "helm-gtags")))
 (load-package 'company :after-load ((global-set-key (kbd "M-t") #'company-complete)))
 
-(load-package 'aggressive-indent :after-load ((load-config "ai")))
 (load-package 'flyspell :after-load ((load-config "fs")))
 
 (load-package 'dired :after-load ((load-config "dired")))

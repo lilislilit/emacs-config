@@ -1,10 +1,12 @@
-(defmacro* load-package (name &key options after-load)
+(defmacro* load-package (name &key options after-load required)
   `(progn
      ,@(mapcar (lambda (option) `(setf ,(car option) ,(cdr option))) options)
-     (eval-after-load ,name
-       (lambda ()
-         ,@after-load))
-     (require ,name nil t)))
+     ,(when after-load
+        `(eval-after-load ,name
+           (lambda ()
+             ,@after-load)))
+     ,(when required
+        `(require ,name nil t))))
 
 (defun load-config (name)
 
