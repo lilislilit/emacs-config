@@ -129,6 +129,7 @@ various buffer management routines")
 (require 'local-env nil t)
 (require 'my-utils)
 
+;; third party modules
 (load-package 'iresize
               :after-load ((global-set-key (kbd "C-c r") #'iresize-mode))
               :required t)
@@ -150,25 +151,28 @@ various buffer management routines")
               :after-load ((load-config "ai"))
               :required t)
 
+(load-package 'company
+              :after-load ((global-set-key (kbd "M-t") #'company-complete))
+              :required t)
+
 (load-package 'ggtags :config "ggtags")
+
 (load-package 'helm :config "helm")
 (load-package 'helm-gtags :config "helm-gtags")
-(load-package 'company :after-load ((global-set-key (kbd "M-t") #'company-complete)))
 
-(load-package 'flyspell :after-load ((load-config "fs")))
-
+;; embedded packages
+(load-package 'flyspell :config "fs")
+(load-package 'org :config "org")
 (load-package 'dired :config "dired")
 (load-package 'cc-mode :config "cc")
 (load-package 'vc :config "vc")
+(load-package 'erc :config "erc")
 (load-package 'ido
               :options ((ido-enable-flex-matching . t)
                         (ido-create-new-buffer . 'always))
               :after-load ((mapcar #'(lambda (entry)
                                        (add-to-list 'ido-ignore-buffers entry))
                                    ignored-buffer-list)))
-
-(load-package 'erc :config "erc")
-(load-package 'org :config "org")
 
 ;;-------------------------------------------------------------------------------
 ;; to make a cursor navigation a little bit easy
