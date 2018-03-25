@@ -1,19 +1,29 @@
-(defun load-conf (file-sym conf-form &optional req)
+(defmacro* load-package (name &key options after-load required config)
+  `(progn
+     ,@(mapcar (lambda (option) `(setf ,(car option) ,(cdr option))) options)
+     ,(when after-load
+        `(eval-after-load ,name
+           (lambda ()
+             ,@after-load)))
+     ,(when config
+        `(eval-after-load ,name
+           (lambda ()
+             (load-config ,config))))
+     ,(when required
+        `(require ,name nil t))))
 
-  (defun do-load (conf)
-    (let ((main  (expand-file-name
-                  (format "conf.d/%s.el" conf) user-emacs-directory))
-          (local (expand-file-name
-                  (format "local.d/%s.el" conf) user-emacs-directory)))
-      (if (file-regular-p local)
-          `(progn (load ,main) (load ,local))
-        `(load ,main))))
+(defun load-config (name)
 
-  (if (stringp conf-form)
-      (eval-after-load file-sym (do-load conf-form))
-    (eval-after-load file-sym conf-form))
-  (when req
-    (require file-sym nil t)))
+  "it loads configuration that is saved in conf.d and local.d directories"
+
+  (let ((main  (expand-file-name
+                (format "conf.d/%s.el" name) user-emacs-directory))
+        (local (expand-file-name
+                (format "local.d/%s.el" name) user-emacs-directory)))
+
+    (load main)
+    (if (file-regular-p local)
+        (load local))))
 
 ;;-------------------------------------------------------------------------------
 

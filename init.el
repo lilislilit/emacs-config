@@ -129,47 +129,50 @@ various buffer management routines")
 (require 'local-env nil t)
 (require 'my-utils)
 
-(load-conf 'iresize
-           '(global-set-key (kbd "C-c r") #'iresize-mode)
-           t)
+;; third party modules
+(load-package 'iresize
+              :after-load ((global-set-key (kbd "C-c r") #'iresize-mode))
+              :required t)
 
-(load-conf 'window-numbering
-           '(window-numbering-mode 1)
-           t)
+(load-package 'window-numbering
+              :after-load ((window-numbering-mode 1))
+              :required t)
 
-(load-conf 'expand-region
-           '(global-set-key (kbd "M-@") 'er/expand-region)
-           t)
+(load-package 'expand-region
+              :after-load ((global-set-key (kbd "M-@") 'er/expand-region))
+              :required t)
 
-(load-conf 'which-key
-           '(progn
-              (setq which-key-idle-delay 2.0)
-              (which-key-mode 1))
-           t)
+(load-package 'which-key
+              :options ((which-key-idle-delay . 2.0))
+              :after-load ((which-key-mode 1))
+              :required t)
 
-(load-conf 'ggtags "ggtags")
-(load-conf 'helm "helm")
-(load-conf 'helm-gtags "helm-gtags")
-(load-conf 'company
-           '(progn
-              (global-set-key (kbd "M-t") #'company-complete)))
+(load-package 'aggressive-indent
+              :after-load ((load-config "ai"))
+              :required t)
 
-(load-conf 'aggressive-indent "ai" t)
-(load-conf 'flyspell "fs" t)
+(load-package 'company
+              :after-load ((global-set-key (kbd "M-t") #'company-complete))
+              :required t)
 
-(load-conf 'dired "dired" t)
-(load-conf 'cc-mode "cc")
-(load-conf 'vc "vc")
-(load-conf 'ido
-           '(progn
-              (setq ido-enable-flex-matching t
-                    ido-create-new-buffer 'always)
-              (mapcar #'(lambda (entry)
-                          (add-to-list 'ido-ignore-buffers entry))
-                      ignored-buffer-list)))
+(load-package 'ggtags :config "ggtags")
 
-(load-conf 'erc "erc")
-(load-conf 'org "org")
+(load-package 'helm :config "helm")
+(load-package 'helm-gtags :config "helm-gtags")
+
+;; embedded packages
+(load-package 'flyspell :config "fs")
+(load-package 'org :config "org")
+(load-package 'dired :config "dired")
+(load-package 'cc-mode :config "cc")
+(load-package 'vc :config "vc")
+(load-package 'erc :config "erc")
+(load-package 'ido
+              :options ((ido-enable-flex-matching . t)
+                        (ido-create-new-buffer . 'always))
+              :after-load ((mapcar #'(lambda (entry)
+                                       (add-to-list 'ido-ignore-buffers entry))
+                                   ignored-buffer-list)))
 
 ;;-------------------------------------------------------------------------------
 ;; to make a cursor navigation a little bit easy
