@@ -19,23 +19,6 @@
     (if (file-regular-p local)
         (load local))))
 
-(defun load-conf (file-sym conf-form &optional req)
-
-  (defun do-load (conf)
-    (let ((main  (expand-file-name
-                  (format "conf.d/%s.el" conf) user-emacs-directory))
-          (local (expand-file-name
-                  (format "local.d/%s.el" conf) user-emacs-directory)))
-      (if (file-regular-p local)
-          `(progn (load ,main) (load ,local))
-        `(load ,main))))
-
-  (if (stringp conf-form)
-      (eval-after-load file-sym (do-load conf-form))
-    (eval-after-load file-sym conf-form))
-  (when req
-    (require file-sym nil t)))
-
 ;;-------------------------------------------------------------------------------
 
 (defun shell-jump ()
