@@ -100,13 +100,6 @@ various buffer management routines")
       uniquify-ignore-buffers-re "^\\*")
 
 ;;-------------------------------------------------------------------------------
-;; spell
-
-(setq ispell-program-name "aspell"
-      ispell-dictionary "english"
-      ispell-extra-args '("--sug-mode=ultra"))
-
-;;-------------------------------------------------------------------------------
 ;; package management
 
 (when (>= emacs-major-version 24)
@@ -161,6 +154,7 @@ various buffer management routines")
 (load-package 'helm-gtags :config "helm-gtags")
 
 ;; embedded packages
+(load-package 'ispell :config "spell")
 (load-package 'flyspell :config "fs")
 (load-package 'org :config "org")
 (load-package 'dired :config "dired")
