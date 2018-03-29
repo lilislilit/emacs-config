@@ -17,8 +17,6 @@
  make-pointer-invisible t
  x-select-enable-clipboard t
  default-input-method 'russian-computer
- gdb-many-windows t
- calculator-electric-mode nil
  browse-url-browser-function 'browse-url-firefox)
 
 (put 'scroll-left 'disabled nil)
@@ -169,13 +167,6 @@ various buffer management routines")
                                    ignored-buffer-list)))
 
 ;;-------------------------------------------------------------------------------
-;; to make a cursor navigation a little bit easy
-(global-set-key (kbd "M-n") #'forward-paragraph)
-(global-set-key (kbd "M-p") #'backward-paragraph)
-
-;; buffer related shortcuts start from C-x
-(global-set-key (kbd "C-x p") #'previous-buffer)
-(global-set-key (kbd "C-x n") #'next-buffer)
 (global-set-key (kbd "C-x l")
                 (lexical-let (swap-last)
                   #'(lambda ()
@@ -185,15 +176,7 @@ function to keep a state variable"
                       (swap-buffers swap-last)
                       (setq swap-last (not swap-last)))))
 (global-set-key (kbd "C-x c") #'shell-jump)
-(global-set-key (kbd "C-x M-d") #'dired-other-window)
 (global-set-key (kbd "C-x M-f") #'find-file-at-point)
-(global-set-key (kbd "C-x M-b") #'switch-to-buffer-other-window)
-(global-set-key (kbd "C-x C-n")
-                #'(lambda (newname)
-                    (interactive
-                     (list (read-string "Rename current buffer to: "
-                                        (buffer-name (current-buffer)))))
-                    (rename-buffer newname)))
 (global-set-key (kbd "C-x C-x") #'server-edit)
 
 ;; general commands start from C-c
@@ -207,6 +190,7 @@ function to keep a state variable"
 (global-set-key (kbd "C-c o") #'other-window)
 
 (global-set-key (kbd "C-c C-x C-a") #'org-agenda)
+(global-set-key (kbd "C-c C-x g") #'magit-status)
 
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file :noerror)
