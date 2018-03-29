@@ -146,9 +146,15 @@ various buffer management routines")
               :after-load ((global-set-key (kbd "M-t") #'company-complete))
               :required t)
 
-(load-package 'ggtags :config "ggtags")
+(load-package 'ggtags
+              :options ((ggtags-mode-prefix-key . (kbd "M-j"))
+                        (ggtags-enable-navigation-keys . nil)
+                        (ggtags-split-window-function . #'split-window-vertically))
+              :config "ggtags")
 
-(load-package 'helm :config "helm")
+(load-package 'helm
+              :options ((helm-command-prefix-key . (kbd "C-x C-h")))
+              :config "helm")
 (load-package 'helm-gtags :config "helm-gtags")
 
 ;; embedded packages
