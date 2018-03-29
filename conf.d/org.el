@@ -1,3 +1,5 @@
+(require 'org-agenda)
+
 (setq
  calendar-week-start-day 1
  org-agenda-window-setup 'current-window)
