@@ -141,7 +141,7 @@ various buffer management routines")
               :required t)
 
 (load-package 'aggressive-indent
-              :after-load ((load-config "ai"))
+              :after-load ((global-aggressive-indent-mode 1))
               :required t)
 
 (load-package 'company
