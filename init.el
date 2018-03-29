@@ -148,7 +148,9 @@ various buffer management routines")
 
 (load-package 'ggtags :config "ggtags")
 
-(load-package 'helm :config "helm")
+(load-package 'helm
+              :options ((helm-command-prefix-key . (kbd "C-x C-h")))
+              :config "helm")
 (load-package 'helm-gtags :config "helm-gtags")
 
 ;; embedded packages

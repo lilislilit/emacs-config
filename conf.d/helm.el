@@ -1,4 +1,3 @@
-(setq helm-command-prefix-key (kbd "C-x C-h"))
 (require 'helm-config)
 (require 'helm-buffers)
 (helm-autoresize-mode 1)
@@ -30,5 +29,3 @@
         ignored-buffer-list)
 
 (add-to-list 'ignored-buffer-list "\\*helm")
-
-(require 'helm-gtags nil t)
