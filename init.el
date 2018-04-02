@@ -157,6 +157,8 @@ various buffer management routines")
               :config "helm")
 (load-package 'helm-gtags :config "helm-gtags")
 
+(load-package 'meghanada :config "megha")
+
 ;; embedded packages
 (load-package 'ispell :config "spell")
 (load-package 'flyspell :config "fs" :required t)
