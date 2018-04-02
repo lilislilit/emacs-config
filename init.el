@@ -159,7 +159,7 @@ various buffer management routines")
 
 ;; embedded packages
 (load-package 'ispell :config "spell")
-(load-package 'flyspell :config "fs")
+(load-package 'flyspell :config "fs" :required t)
 (load-package 'org :config "org")
 (load-package 'dired :config "dired")
 (load-package 'cc-mode :config "cc")
