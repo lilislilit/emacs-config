@@ -143,7 +143,8 @@ various buffer management routines")
               :required t)
 
 (load-package 'company
-              :after-load ((global-set-key (kbd "M-t") #'company-complete))
+              :after-load ((global-company-mode 1)
+                           (global-set-key (kbd "M-t") #'company-complete))
               :required t)
 
 (load-package 'ggtags
