@@ -78,8 +78,6 @@ various buffer management routines")
 (global-whitespace-mode 1)
 (setq whitespace-style '(face
                          trailing
-                         empty
-                         indentation
                          space-after-tab
                          space-before-tab))
 
