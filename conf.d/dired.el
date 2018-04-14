@@ -1,6 +1,7 @@
+(require 'dired-x)
+
 (setq dired-recursive-deletes 'always
       dired-deletion-confirmer #'y-or-n-p)
-(require 'dired-x)
 
 (defadvice dired-do-shell-command
     (around split-fashion (command &optional arg file-list)
