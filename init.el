@@ -164,7 +164,6 @@ various buffer management routines")
 (load-package 'org :config "org")
 (load-package 'dired :config "dired")
 (load-package 'cc-mode :config "cc")
-(load-package 'vc :config "vc")
 (load-package 'erc :config "erc")
 (load-package 'ido
               :options ((ido-enable-flex-matching . t)
