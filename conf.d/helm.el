@@ -24,8 +24,7 @@
       helm-recentf-fuzzy-match t
       helm-M-x-fuzzy-match t)
 
-(mapcar #'(lambda (entry)
-            (add-to-list 'helm-boring-buffer-regexp-list entry))
-        ignored-buffer-list)
+(dolist (entry ignored-buffer-list)
+  (add-to-list 'helm-boring-buffer-regexp-list entry))
 
 (add-to-list 'ignored-buffer-list "\\*helm")

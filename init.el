@@ -33,8 +33,7 @@
 (setenv "GPG_AGENT_INFO" nil)
 
 (defvar ignored-buffer-list
-  '("\\*Completions" "\\*Quail Completions\\*" "\\*Backtrace\\*" "\\*magit-edit-log\\*"
-    "\\*P4" "\\*Buffer List\\*" "\\**Shell Command Output\\*")
+  '("\\*Completions" "\\*Quail Completions\\*" "\\*Backtrace\\*" "\\*magit-edit-log\\*" "\\*P4" "\\*Buffer List\\*")
   "list of the buffer names or regular expressions to be ignored by
 various buffer management routines")
 
@@ -42,11 +41,9 @@ various buffer management routines")
 
 (defun suitable-buffer-p (buffer)
   "predicate to check the buffer exclusion from the `ignored-buffer-list'"
-  (if (find-if #'(lambda (entry)
-                   (string-match entry (buffer-name buffer)))
-               ignored-buffer-list)
-      nil
-    t))
+  (not (find-if #'(lambda (entry)
+                    (string-match entry (buffer-name buffer)))
+                ignored-buffer-list)))
 
 (setf frame-title-format "%F")
 (add-to-list 'default-frame-alist `(buffer-predicate . ,#'suitable-buffer-p))
@@ -166,9 +163,8 @@ various buffer management routines")
 (load-package 'ido
               :options ((ido-enable-flex-matching . t)
                         (ido-create-new-buffer . 'always))
-              :after-load ((mapcar #'(lambda (entry)
-                                       (add-to-list 'ido-ignore-buffers entry))
-                                   ignored-buffer-list)))
+              :after-load ((dolist (entry ignored-buffer-list)
+                             (add-to-list 'ido-ignore-buffers entry))))
 
 ;;-------------------------------------------------------------------------------
 (global-set-key (kbd "C-x l")
