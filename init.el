@@ -153,6 +153,10 @@ various buffer management routines")
               :config "helm")
 (load-package 'helm-gtags :config "helm-gtags")
 
+(load-package 'powerline
+              :after-load ((powerline-default-theme))
+              :required t)
+
 ;; embedded packages
 (load-package 'ispell :config "spell")
 (load-package 'flyspell :config "fs" :required t)
