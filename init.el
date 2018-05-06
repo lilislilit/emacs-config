@@ -153,8 +153,8 @@ various buffer management routines")
               :config "helm")
 (load-package 'helm-gtags :config "helm-gtags")
 
-(load-package 'ivy
-              :config "ivy")
+(load-package 'ivy :config "ivy")
+(load-package 'counsel-gtags :config "counsel-gtags")
 
 (load-package 'powerline
               :after-load ((powerline-default-theme))
