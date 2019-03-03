@@ -61,6 +61,12 @@ various buffer management routines")
 (setq visual-line-fringe-indicators '(nil right-curly-arrow))
 
 ;;-------------------------------------------------------------------------------
+
+(add-hook 'text-mode-hook
+          #'(lambda()
+              (define-key text-mode-map (kbd "M-q") #'unfill-paragraph)))
+
+;;-------------------------------------------------------------------------------
 ;; e/common lisp
 
 (defun lisp-no-tabs()
