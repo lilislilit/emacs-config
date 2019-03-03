@@ -12,3 +12,10 @@
 (add-hook 'org-mode-hook #'org-toggle-time-stamp-overlays)
 
 (add-to-list 'auto-mode-alist '("\\.org\\(-mode\\)?$" . org-mode))
+
+(defadvice org-agenda-redo-all
+    (around reload-files (command &optional exhaustive)
+            activate)
+  "it reloads files from disk before rebuilding agenda"
+  (dolist (file org-agenda-files)
+    (find-file-noselect file)))
