@@ -6,3 +6,5 @@
 
 (global-set-key (kbd "C-c C-s") 'swiper)
 (global-set-key (kbd "C-c C-r") 'ivy-resume)
+
+(define-key ivy-minibuffer-map (kbd "M-t") #'ivy-partial-or-done)
