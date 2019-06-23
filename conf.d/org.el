@@ -2,6 +2,7 @@
 
 (setq
  calendar-week-start-day 1
+ org-catch-invisible-edits 'show-and-error
  org-time-stamp-custom-formats '("<%a %d %b %Y>" . "<%a %H:%M %d %b %Y>")
  org-agenda-window-setup 'current-window)
 
